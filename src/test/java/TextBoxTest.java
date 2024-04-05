@@ -3,6 +3,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.RegistrationPage;
+import static io.qameta.allure.Allure.step;
+
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -30,8 +32,9 @@ public class TextBoxTest extends TestBase {
             String city
     ) {
 
-        registrationPage.openPage()
-                .setFirstName(userName)
+        step("Open registrations form", () -> {registrationPage.openPage();});
+        step("Fill form", () -> {
+            registrationPage.setFirstName(userName)
                 .setLastName(userLastName)
                 .setEmail(userEmail)
                 .setGender(gender)
@@ -43,12 +46,13 @@ public class TextBoxTest extends TestBase {
                 .setAddress(address)
                 .setStateAndCity(state, city)
                 .submitResults();
+        });
 
-        registrationPage.verifyResultsModalAppears().
-                verifyResult("Student Name", userName + " " + userLastName).
-                verifyResult("Student Email", userEmail).
-                verifyResult("Gender", gender).
-                verifyResult("Mobile", mobileNumber);
+        step("Verify results", () -> {registrationPage.verifyResultsModalAppears().
+                    verifyResult("Student Name", userName + " " + userLastName).
+                    verifyResult("Student Email", userEmail).
+                    verifyResult("Gender", gender).
+                    verifyResult("Mobile", mobileNumber);});
 
     }
 }
