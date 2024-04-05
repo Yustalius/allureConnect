@@ -1,18 +1,18 @@
 import helpers.TestBase;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.RegistrationPage;
 import static io.qameta.allure.Allure.step;
 
 
-import static com.codeborne.selenide.Selenide.*;
-
 public class TextBoxTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @DisplayName("Проверка заполнения формы с разными параметрами")
     @CsvFileSource(resources = "/parametrs.csv")
+    @Tag("smoke")
     @ParameterizedTest(name = "{0} {1}")
     void demoQAAuthFormTest(
             String userName,
