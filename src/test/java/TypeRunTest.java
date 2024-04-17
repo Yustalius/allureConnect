@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.open;
 public class TypeRunTest {
 
     @DisplayName("Проверка печатания")
-    @Tag("smoke")
     @Test
     void TypeText() throws IOException {
         open("https://typerun.top/#rus_adv");
