@@ -1,5 +1,6 @@
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileWriter;
@@ -14,6 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class TypeRunTest {
 
     @DisplayName("Проверка печатания")
+    @Tag("smoke")
     @Test
     void TypeText() throws IOException {
         open("https://typerun.top/#rus_adv");
