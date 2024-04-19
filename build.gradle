@@ -52,6 +52,11 @@ task smoke_tests(type: Test) {
         includeTags("smoke")
     }
 }
+task simple_tests(type: Test) {
+    useJUnitPlatform {
+        includeTags("simple")
+    }
+}
 
 help {
     doFirst {
