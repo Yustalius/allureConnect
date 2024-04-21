@@ -20,6 +20,7 @@ public class TypeRunTest extends TestBase {
 
         for (int i = 1; i <= 5; i++) {
             String text = $(".line1").getText(); // Забираем текст из строки
+            int a = 6;
 
             // Разбиваем текст на отдельные символы в изначальном порядке
             List<Character> characters = new ArrayList<>();
