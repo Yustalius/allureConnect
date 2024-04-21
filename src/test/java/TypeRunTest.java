@@ -1,28 +1,24 @@
 import com.codeborne.selenide.SelenideElement;
+import helpers.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class TypeRunTest {
+@Tag("smoke")
+public class TypeRunTest extends TestBase {
 
     @DisplayName("Проверка печатания")
     @Test
-    void TypeText() throws IOException {
+    void TypeText(){
         open("https://typerun.top/#rus_adv");
 
-        List<Double> results = new ArrayList<>(); // Массив для записи результатов
-        int totalSymbols = 0;// Переменная для общего кол-ва символов
-
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 5; i++) {
             String text = $(".line1").getText(); // Забираем текст из строки
 
             // Разбиваем текст на отдельные символы в изначальном порядке
@@ -41,69 +37,6 @@ public class TypeRunTest {
             }
 
             inline.pressEnter();
-
-            if (i == 1) { // Проверяем, первая ли это строка
-                String symbolsOnFirstLine = $("[title='Всего символов в минуту']").getText(); // Забираем количество символов с первой строки
-                double symbolsOnFirstLineValue = Double.parseDouble(symbolsOnFirstLine); // Парсим кол-во символов в double
-                results.add(symbolsOnFirstLineValue); // Записываем кол-во символов с первой строки в массив с результатами
-
-                // Записываем кол-во символов в файл
-                FileWriter writer = new FileWriter("C:\\Users\\Владислав\\Downloads\\Result.txt", true);
-
-                writer.write(i + " - " + symbolsOnFirstLine + " символов");
-                writer.write("\n");
-
-                writer.close();
-
-
-            } else { //Если не первая строка
-                String resultAfterSecondLine = $("[title='Символов в минуту на предыдущей строке']").getText(); // Забираем количество символов
-                double resultAfterSecondLineValue = Double.parseDouble(resultAfterSecondLine); // Парсим кол-во символов в double
-                results.add(resultAfterSecondLineValue); // Записываем кол-во символов со строки в массив с результатами
-
-                // Записываем кол-во символов в файл
-                FileWriter writer = new FileWriter("C:\\Users\\Владислав\\Downloads\\Result.txt", true);
-
-                writer.write(i + " - " + resultAfterSecondLine + " символов");
-                writer.write("\n");
-
-                writer.close();
-            }
-
-            totalSymbols += characters.size(); // Прибавляем число символов к общему
-
-            // Создаем показ промежуточных результатов каждые 25 строк
-            if ((i != 100) && (i % 20 == 0)) {
-                double  maxValue = Collections.max(results),
-                        minValue = Collections.min(results),
-                        averageValue = results.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
-
-                // Выводим в файл промежуточные результаты
-                FileWriter writer = new FileWriter("C:\\Users\\Владислав\\Downloads\\Result.txt", true);
-
-                writer.write("Общее кол-во символов: " + totalSymbols + "\n");
-                writer.write("Максимальное значение: " + maxValue + "\n");
-                writer.write("Минимальное значение: " + minValue + "\n");
-                writer.write("Среднее кол-во символов: " + averageValue + "\n");
-
-                writer.close();
-            }
-
         }
-
-        // Переменные для максимального, минимального и среднего арифметического значения
-        double  maxValue = Collections.max(results),
-                minValue = Collections.min(results),
-                averageValue = results.stream().mapToDouble(Double::doubleValue).average().getAsDouble();
-
-        // Выводим в файл результаты
-        FileWriter writer = new FileWriter("C:\\Users\\Владислав\\Downloads\\Result.txt", true);
-
-        writer.write("Общее кол-во символов: " + totalSymbols + "\n");
-        writer.write("Максимальное значение: " + maxValue + "\n");
-        writer.write("Минимальное значение: " + minValue + "\n");
-        writer.write("Среднее кол-во символов: " + averageValue + "\n");
-
-        writer.close();
     }
 }
