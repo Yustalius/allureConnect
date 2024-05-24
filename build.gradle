@@ -31,7 +31,8 @@ dependencies {
             "com.codeborne:selenide:6.9.0",
             "io.qameta.allure:allure-selenide:2.19.0",
             "org.junit.jupiter:junit-jupiter:5.9.1",
-            "org.slf4j:slf4j-simple:2.0.12"
+            "org.slf4j:slf4j-simple:2.0.12",
+            "org.aeonbits.owner:owner:1.0.4"
     )
 }
 
@@ -47,14 +48,14 @@ tasks.withType(Test) {
     }
 }
 
-task smoke_tests(type: Test) {
+task textbox(type: Test) {
     useJUnitPlatform {
-        includeTags("smoke")
+        includeTags("textbox")
     }
 }
-task simple_tests(type: Test) {
+task typerun(type: Test) {
     useJUnitPlatform {
-        includeTags("simple")
+        includeTags("typerun")
     }
 }
 

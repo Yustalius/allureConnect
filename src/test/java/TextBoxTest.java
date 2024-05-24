@@ -1,6 +1,7 @@
 import helpers.TestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.RegistrationPage;
@@ -12,7 +13,7 @@ public class TextBoxTest extends TestBase {
 
     @DisplayName("Проверка заполнения формы с разными параметрами")
     @CsvFileSource(resources = "/parametrs.csv")
-    @Tag("smoke")
+    @Tag("textbox")
     @ParameterizedTest(name = "{0} {1}")
     void demoQAAuthFormTest(
             String userName,
