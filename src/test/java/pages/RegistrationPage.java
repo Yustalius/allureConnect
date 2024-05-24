@@ -35,6 +35,7 @@ public class RegistrationPage {
         $(".text-center").shouldHave(text(TITLE_TEXT));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#cto_banner_content').remove()");
 
         return this;
     }

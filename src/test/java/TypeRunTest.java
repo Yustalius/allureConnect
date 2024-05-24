@@ -10,10 +10,10 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-@Tag("smoke")
 public class TypeRunTest extends TestBase {
 
     @DisplayName("Проверка печатания")
+    @Tag("typerun")
     @Test
     void TypeText(){
         open("https://typerun.top/#rus_adv");
