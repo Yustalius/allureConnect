@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class TypeRunTest extends TestBase {
 
@@ -16,9 +17,9 @@ public class TypeRunTest extends TestBase {
     @Tag("typerun")
     @Test
     void TypeText(){
-        open("https://typerun.top/#rus_adv");
+        step("Открыть страницу", () -> {open("https://typerun.top/#rus_adv");});
 
-        for (int i = 1; i <= 5; i++) {
+        step("Напечатать 5 строк", () -> {for (int i = 1; i <= 5; i++) {
             String text = $(".line1").getText(); // Забираем текст из строки
 
             // Разбиваем текст на отдельные символы в изначальном порядке
@@ -37,6 +38,6 @@ public class TypeRunTest extends TestBase {
             }
 
             inline.pressEnter();
-        }
+        }});
     }
 }
